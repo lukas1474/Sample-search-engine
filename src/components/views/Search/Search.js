@@ -4,6 +4,7 @@ import styles from '../Search/Search.module.scss';
 import { unsplashId } from '../../../config';
 import SearchResults from '../SearchResults/SearchResults';
 
+
 const Search = () => {
   const [query, setQuery] = useState('');
   const [pics, setPics] = useState([]);

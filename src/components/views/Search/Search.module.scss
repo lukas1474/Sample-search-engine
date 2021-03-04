@@ -57,39 +57,7 @@
   width: 50vw;
 }
 
-.cardList {
-  padding-top: 25px ;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
 
-}
-
-.card {
-  display: flex;
-  flex: 50%;
-  justify-content: center;
-  align-items: center;
-}
-
-.cardImage {
-  margin-top: 8px;
-  vertical-align: middle;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
-
-.cardImage img {
-  flex: 100%;
-  margin-top: 1rem;
-
-  height: 50%;
-  width: 50%;
-  object-fit: fill;
-}
 
 @media (min-width: 768px) {
   .form {
