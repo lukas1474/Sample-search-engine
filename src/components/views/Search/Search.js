@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styles from '../Search/Search.module.scss';
 
 import { unsplashId } from '../../../config';
-
-import { Container, Row, Col } from 'react-bootstrap';
+import SearchResults from '../SearchResults/SearchResults';
 
 const Search = () => {
   const [query, setQuery] = useState('');
@@ -19,14 +18,14 @@ const Search = () => {
       return res.json();
     }).then(res => {
       setPics(res.results);
-      console.log(res);
+      console.log(res.results);
     });
+    console.log(pics);
   };
 
   const handleChange = (event) => {
     setQuery(event.target.value);
   };
-  console.log(query);
 
   return(
     <div className={styles.root}>
@@ -44,19 +43,7 @@ const Search = () => {
             />
           </form>
         </div>
-        <Container>
-          <Row className={styles.cardList}>
-            {pics && pics.map((pic) =>
-              <Col className={styles.card} key={pic.id} lg={4}>
-                <img
-                  className={styles.cardImage}
-                  alt={pic.alt_description}
-                  src={pic.urls.regular}
-                ></img>
-              </Col>
-            )}
-          </Row>
-        </Container>
+        <SearchResults pics={pics} />
       </div>
     </div>
   );
