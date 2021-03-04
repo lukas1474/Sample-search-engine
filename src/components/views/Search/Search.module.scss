@@ -11,8 +11,6 @@
 
 .container {
   margin: 0 auto;
-  // max-width: 1000px;
-  // padding: 40px;
 }
 
 .searchSection {
@@ -51,7 +49,7 @@
   font-size: 1.6rem;
   padding: 0.5rem 2rem;
   line-height: 2.8rem;
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: white;
   margin-bottom: 1rem;
   text-decoration: none;
@@ -59,38 +57,38 @@
   width: 50vw;
 }
 
-.button {
-  background-color: rgba(0, 0, 0, 0.75);
-  color: white;
-  padding: 1rem 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.75);
-  border-radius: 20px;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: background-color 250ms;
-}
-
-.button:hover {
-  background-color: rgba(0, 0, 0, 0.85);
-}
-
 .cardList {
-  // column-count: 3;
   padding-top: 25px ;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+
 }
 
 .card {
-  margin-bottom: 1rem;
   display: flex;
-  height: 50%;
-  width: 50%;
-
+  flex: 50%;
+  justify-content: center;
+  align-items: center;
 }
 
 .cardImage {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.cardImage img {
   flex: 100%;
   margin-top: 1rem;
-  border-radius: 10px;
+
+  height: 50%;
+  width: 50%;
+  object-fit: fill;
 }
 
 @media (min-width: 768px) {

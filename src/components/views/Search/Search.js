@@ -1,47 +1,32 @@
 import React, { useState } from 'react';
 import styles from '../Search/Search.module.scss';
 
-import  Unsplash, { toJson } from 'unsplash-js';
+import { unsplashId } from '../../../config';
 
-import { UNSPLASH_URL, unsplashId } from '../../../config';
-
-const unsplash = new Unsplash({
-  accessKey: unsplashId,
-});
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Search = () => {
-  const [photo, setPhotos] = useState('');
-  const [search, setSearch] = useState('');
-  const [name, setName] = useState();
-  const [searchId, setSearchId] = useState('');
   const [query, setQuery] = useState('');
   const [pics, setPics] = useState([]);
 
-
+  console.log('pics', pics);
 
   const searchPhotos = async (event) => {
     event.preventDefault();
-    console.log('Submitting the Form');
-    unsplash.search
-      .photos(query)
-      .then(toJson)
-      .then((json) => {
-        setPics(json.results);
-      });
-    console.log(pics);
+    fetch(`https://api.unsplash.com/search/photos?page=2&per_page=20&query=${query}&client_id=${unsplashId}`, {
+      'method': 'GET',
+    }).then((res) => {
+      return res.json();
+    }).then(res => {
+      setPics(res.results);
+      console.log(res);
+    });
   };
 
   const handleChange = (event) => {
     setQuery(event.target.value);
-    setSearch('');
   };
   console.log(query);
-
-  const handleKeyPress = (pic) => {
-    // setSearch(option.geometry.coordinates);
-    setQuery(pic.tags.title);
-    // setOptions([]);
-  };
 
   return(
     <div className={styles.root}>
@@ -57,33 +42,21 @@ const Search = () => {
               value={query}
               onChange={handleChange}
             />
-            <ul className={styles.optionsUl}>
-              {pics && pics.map(pic => (
-                <li key={pic.id} className={styles.optionsLi}>
-                  <button
-                    onClick={() => handleKeyPress(pic)}
-                  >
-                    {pic.tags.title}
-                  </button>
-                </li>
-              ))}
-              {/* {console.log(options)} */}
-            </ul>
           </form>
         </div>
-        <div className={styles.cardList}>
-          {pics.map((pic) =>
-            <div className={styles.card} key={pic.id}>
-              <img
-                className={styles.cardImage}
-                alt={pic.alt_description}
-                src={pic.urls.full}
-                width="100%"
-                height="100%"
-              ></img>
-            </div>
-          )}
-        </div>
+        <Container>
+          <Row className={styles.cardList}>
+            {pics && pics.map((pic) =>
+              <Col className={styles.card} key={pic.id} lg={4}>
+                <img
+                  className={styles.cardImage}
+                  alt={pic.alt_description}
+                  src={pic.urls.regular}
+                ></img>
+              </Col>
+            )}
+          </Row>
+        </Container>
       </div>
     </div>
   );
