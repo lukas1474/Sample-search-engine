@@ -3,53 +3,67 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
-
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
+  margin: 5px;
   display: flex;
-  flex: 50%;
   justify-content: center;
   align-items: center;
 }
 
 .cardImage {
-  margin-top: 8px;
   vertical-align: middle;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
   border-radius: 5px;
 }
 
 .cardImage img {
-  flex: 100%;
-  margin-top: 1rem;
-
-  height: 50%;
-  width: 50%;
-  object-fit: fill;
+  height: 75%;
+  width: 75%;
+  object-fit: cover;
 }
 
+.modalButton {
+  background: none;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
-// .modalDiv {
-//   border: 1px solid red;
-//   max-width: 100px;
-//   max-height: 100px;
-// }
+.imageModal {
+  width: 50%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  // object-fit: contain;
 
-// .cardImage {
-//   margin-top: 8px;
-//   vertical-align: middle;
-//   width: 50px;
-//   height: 50px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 5px;
-// }
+  img{
+    width: 50%;
+    height: 50%;
+  }
+}
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-// .author {
-//   color: red;
-// }
+h3, h5 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.modalView {
+  // background: lightgrey;
+}

@@ -16,12 +16,13 @@ const SearchResults = ({pics}) => {
     setPhotoDetails(pic);
   };
   console.log(photoDetails);
+
   return(
-    <Container>
+    <div>
       <Row className={styles.cardList}>
         {pics && pics.map((pic) =>
-          <Col className={styles.card}  key={pic.id} lg={4}>
-            <button onClick={() => clickModal(pic)}>
+          <Col className={styles.card} key={pic.id} md={3} lg={3}>
+            <button className={styles.modalButton} onClick={() => clickModal(pic)}>
               <img
                 className={styles.cardImage}
                 alt={pic.alt_description}
@@ -32,18 +33,16 @@ const SearchResults = ({pics}) => {
         )}
       </Row>
       {photoDetails ? (
-        <Modal key={photoDetails.id} isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
-        >
-          <p>{photoDetails.id}</p>
-          <img
-            className={styles.cardImage}
-            alt={photoDetails.alt_description}
-            src={photoDetails.urls.regular}
-          ></img>
+        <Modal key={photoDetails.id} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className={styles.modalView}>
+          <Container className={styles.modalContainer}>
+            <h2 className={styles.author}>{photoDetails.user.name}</h2>
+            <img className={styles.imageModal} alt={photoDetails.alt_description} src={photoDetails.urls.regular}/>
+            <h3>{photoDetails.user.location}</h3>
+            <h3>{photoDetails.description}</h3>
+          </Container>
         </Modal>
       ): null }
-    </Container>
+    </div>
   );
 };
 
