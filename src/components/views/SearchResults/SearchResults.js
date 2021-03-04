@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
@@ -8,13 +8,25 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 const SearchResults = ({pics}) => {
 
-  const [ modalIsOpen, setModalIsOpen] = useState(true);
+  const [ modalIsOpen, setModalIsOpen] = useState('');
   const [ photoDetails, setPhotoDetails ] = useState();
 
   const clickModal = (pic) => {
     setModalIsOpen(true);
     setPhotoDetails(pic);
+
+    document.body.style.position = `fixed`;
+    document.body.style.top = `-${window.scrollY}px`;
   };
+
+  useEffect(() => {
+    if (modalIsOpen === false) {
+      const scrollY = document.body.style.top;
+      document.body.style.position = ``;
+      document.body.style.top = ``;
+      window.scrollTo(0, parseInt(scrollY || 0) * -1);
+    }
+  });
 
   return(
     <div>
@@ -22,11 +34,7 @@ const SearchResults = ({pics}) => {
         {pics && pics.map((pic) =>
           <Col className={styles.card} key={pic.id} md={3} lg={3}>
             <button className={styles.modalButton} onClick={() => clickModal(pic)}>
-              <img
-                className={styles.cardImage}
-                alt={pic.alt_description}
-                src={pic.urls.regular}
-              ></img>
+              <img className={styles.cardImage} alt={pic.alt_description} src={pic.urls.regular}/>
             </button>
           </Col>
         )}

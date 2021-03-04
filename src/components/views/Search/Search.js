@@ -10,7 +10,7 @@ const Search = () => {
 
   const searchPhotos = async (event) => {
     event.preventDefault();
-    fetch(`https://api.unsplash.com/search/photos?page=2&per_page=35&query=${query}&client_id=${unsplashId}`, {
+    fetch(`https://api.unsplash.com/search/photos?page=2&per_page=100&query=${query}&client_id=${unsplashId}`, {
       'method': 'GET',
     }).then((res) => {
       return res.json();
@@ -29,14 +29,7 @@ const Search = () => {
         <div className={pics.length ? styles.searchSectionResults : styles.searchSection}>
           <h1 className={styles.title}>Unsplash photo search engine</h1>
           <form className={styles.form} onSubmit={searchPhotos}>
-            <input
-              className={styles.input}
-              type='text'
-              name='photo'
-              placeholder='Search for photos'
-              value={query}
-              onChange={handleChange}
-            />
+            <input className={styles.input} type='text' name='photo' placeholder='Search for photos' value={query} onChange={handleChange}/>
           </form>
         </div>
       </div>
