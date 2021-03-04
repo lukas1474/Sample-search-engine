@@ -15,7 +15,6 @@ const SearchResults = ({pics}) => {
     setModalIsOpen(true);
     setPhotoDetails(pic);
   };
-  console.log(photoDetails);
 
   return(
     <div>

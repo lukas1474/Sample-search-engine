@@ -8,8 +8,6 @@ const Search = () => {
   const [query, setQuery] = useState('');
   const [pics, setPics] = useState([]);
 
-  console.log('pics', pics);
-
   const searchPhotos = async (event) => {
     event.preventDefault();
     fetch(`https://api.unsplash.com/search/photos?page=2&per_page=35&query=${query}&client_id=${unsplashId}`, {
@@ -18,9 +16,7 @@ const Search = () => {
       return res.json();
     }).then(res => {
       setPics(res.results);
-      console.log(res.results);
     });
-    console.log(pics);
   };
 
   const handleChange = (event) => {
